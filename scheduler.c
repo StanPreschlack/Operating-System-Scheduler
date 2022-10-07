@@ -108,11 +108,13 @@ void chooseAlgorithm(int scheduling, char fileName[]);
 void invalidInputError();
 void cannotOpenFileError(char fileName[]);
 
-// static master array (can handle 10 processes)
-process masterProcessArray[10];
+int MAX_NUMBER_OF_PROCESSES = 10;
+
+// static master array 
+process masterProcessArray[MAX_NUMBER_OF_PROCESSES];
 
 // mutable array (same at first but changed)
-process processArray[10];
+process processArray[MAX_NUMBER_OF_PROCESSES];
 
 int numberOfProcesses = 0;
 
