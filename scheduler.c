@@ -7,7 +7,7 @@
 // 2 8 4 3
 //this input will produce this output: with algorythm #2 (shortest time remaining)
 
-0 0: running 
+// 0 0: running 
 // 1 0: running 
 // 2 0: blocked 1: running 
 // 3 0: blocked 1: running 2: ready 
