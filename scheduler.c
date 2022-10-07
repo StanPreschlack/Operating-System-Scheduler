@@ -1,4 +1,10 @@
-// must compile with: gcc  -std=c99 -Wall -o scheduling scheduling.c
+// compiles with: gcc  -std=c99 -Wall -o scheduling scheduling.c
+// to run ./scheduler <algorythm(0, 1 or 2)> <path to file>
+//sample input file text:
+// 3 <- first number is the number of processes
+// 0 4 2 0 <- each line is a process first number is the PID, second is the cpu time, third is the IO time, fourth is the arrival time
+// 1 6 1 2
+// 2 8 4 3
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
