@@ -5,9 +5,9 @@ to run ./scheduler <algorithm(0, 1 or 2)> <path to input file>
   
 sample input file text:
 3 <- first number is the number of processes, each line is a process
-0 4 2 0 <- first number: PID, second: cpu time, third: IO time, fourth: arrival time
-1 6 1 2
-2 8 4 3
+0 4 2 0 <- first number: PID, second: cpu time, third: IO time, fourth: arrival time\n
+1 6 1 2\n
+2 8 4 3\n
 
 this input will produce this output: with algorithm #2 (shortest time remaining)
 
