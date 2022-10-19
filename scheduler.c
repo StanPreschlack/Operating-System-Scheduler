@@ -37,7 +37,6 @@
 // Turnaround process 1: 9
 // Turnaround process 2: 19
 
-
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -74,7 +73,6 @@ int areProcessesWaiting();
 void runningToReady();
 int allButOneAreDone();
 int isLowestRemaining(process proc);
-
 void CPU(FILE *writeFilePtr, void(f_case_zero)(int, int), void(f_case_one(int)), void(f_case_two(int, int)), void(f_case_three(int, int)), void(final_f()));
 
 // first come
@@ -108,13 +106,11 @@ void chooseAlgorithm(int scheduling, char fileName[]);
 void invalidInputError();
 void cannotOpenFileError(char fileName[]);
 
-int MAX_NUMBER_OF_PROCESSES = 10;
-
-// static master array 
-process masterProcessArray[MAX_NUMBER_OF_PROCESSES];
+// static master array (can handle 10 processes)
+process masterProcessArray[10];
 
 // mutable array (same at first but changed)
-process processArray[MAX_NUMBER_OF_PROCESSES];
+process processArray[10];
 
 int numberOfProcesses = 0;
 
@@ -352,14 +348,14 @@ void firstComeCaseOne(int a)
 void firstComeCaseTwo(int a, int clock)
 {
     processArray[a].cpuTime -= 1;
-    if (((processArray[a].totalCpuTime / processArray[a].cpuTime) >= 2) && processArray[a].IOTime > 0)
-    {
-        processArray[a].state = 3;
-    }
     if (processArray[a].cpuTime == 0)
     {
         processArray[a].cycleFinished = clock;
         processArray[a].state = 4;
+    }
+    else if (((processArray[a].totalCpuTime / processArray[a].cpuTime) >= 2) && processArray[a].IOTime > 0)
+    {
+        processArray[a].state = 3;
     }
 }
 
@@ -440,16 +436,16 @@ void roundRobinCaseTwo(int a, int clock)
 {
     processArray[a].cpuTime -= 1;
     processArray[a].runningCycles++;
-    if (((processArray[a].totalCpuTime / processArray[a].cpuTime) >= 2) && processArray[a].IOTime > 0)
-    {
-        processArray[a].state = 3;
-        processArray[a].runningCycles = 0;
-    }
     if (processArray[a].cpuTime == 0)
     {
         processArray[a].cycleFinished = clock;
         processArray[a].runningCycles = 0;
         processArray[a].state = 4;
+    }
+    else if (((processArray[a].totalCpuTime / processArray[a].cpuTime) >= 2) && processArray[a].IOTime > 0)
+    {
+        processArray[a].state = 3;
+        processArray[a].runningCycles = 0;
     }
     if (processArray[a].runningCycles > 2 && areProcessesWaiting())
     {
@@ -536,14 +532,14 @@ void shortestRemainingCaseTwo(int a, int clock)
     {
         processArray[a].state = 1;
     }
-    else if ((processArray[a].totalCpuTime / processArray[a].cpuTime) >= 2 && processArray[a].IOTime > 0)
-    {
-        processArray[a].state = 3;
-    }
     else if (processArray[a].cpuTime <= 0)
     {
         processArray[a].cycleFinished = clock;
         processArray[a].state = 4;
+    }
+    else if ((processArray[a].totalCpuTime / processArray[a].cpuTime) >= 2 && processArray[a].IOTime > 0)
+    {
+        processArray[a].state = 3;
     }
 }
 
@@ -676,3 +672,4 @@ int main(int argc, char *argv[])
     }
     return 0;
 }
+
